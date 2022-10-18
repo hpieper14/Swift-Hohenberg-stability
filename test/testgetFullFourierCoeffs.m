@@ -1,26 +1,24 @@
 function test = testgetFullFourierCoeffs()
-    order = 10;
+    order = 100;
     params.nu = 1.2;
     params.mu = .1;
     vfParams = params;
     nfBranch = 0; 
-    time = 10; 
+    time = 25; 
 
     S = PulseSolution(order, vfParams, nfBranch, time);
+    S = BKNormalForm4dim(S);
+    S = trimNFSol(S);
+    S = getFullFourierCoeffs(S);
     
-    coeffs = getFullFourierCoeffs(S);
-
-    T=-L:.25:L;
-    f = 0;
-    for n = -order:order
-        f = f+real(coeffs(n+order+1)*exp(1i*n*pi.*T./L));
-    end
+    fun = getFunctionFromFourierCoeffs(S);
  
-    
+    time = S.nfData.time; 
+    sol = S.nfData.sol(:,1);
     figure
     plot(time, sol);
     hold on
-    plot(T,f)
+    plot(fun(:,1),fun(:,2))
     legend('Sol via NF equation','Fourier approximation')
 
 end
