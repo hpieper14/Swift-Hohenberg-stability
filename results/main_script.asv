@@ -1,0 +1,59 @@
+vfParams.nu = 1.6;
+vfParams.mu = .05;
+
+normalForm.branch = 0; 
+fourier.M = 1000; 
+fourier.tol = 1e-12; 
+fourier.order = 150; 
+ 
+time = 100; 
+
+
+S = PulseSolution(fourier, vfParams, normalForm, time);
+S = S.BKNormalForm4d_halfline();
+S = S.trimNFSol_halfline();
+S = BKNormalForm4d_halfline(S); 
+
+
+S = S.Newton_halfline(); 
+
+
+fun = S.getFunctionFromFourierCoeffs(S.fourier.half_coeffs, "half");
+
+time = S.normalForm.time; 
+sol = S.normalForm.sol(:,1);
+figure
+plot(time, sol);
+hold on
+plot(fun(:,1),fun(:,2))
+legend('Sol via NF equation','Fourier approximation after Newtons Method')
+
+full_sol = S.getFunctionFromFourierCoeffs(S.fourier.full_coeffs, "full");
+figure 
+hold on 
+plot(full_sol(:, 1), full_sol(:, 2))
+plot([-flip(time), time], [flip(sol), sol], Color  = 'r')
+legend('Solution after Newtons method', 'Solution via Normal Form Eqn')
+
+
+
+
+S = S.Newton();
+
+DF=S.DFFourier(S.fourier.full_coeffs);
+
+D=eig(DF);
+[i,j] = find(D>0);
+vals = [];
+if min(size(D(i,j))) == 1
+    disp(D(i,j));
+    vals = [vals, D(i,j)];
+else 
+    A = D(i,j);
+    disp(A(:,1))
+    vals = [vals, A(:, 1)];
+end
+
+S.fourier.unstable_eigs = vals;
+
+

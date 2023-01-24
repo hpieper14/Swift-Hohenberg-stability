@@ -1,18 +1,19 @@
 function test = testBKNormalForm4dim()
-    order = 10;
+    fourier.order = 10;
     params.nu = 1.2;
     params.mu = .1;
     vfParams = params;
-    nfBranch = 0; 
+    normalForm.branch = 0; 
     time = 10; 
+    fourier.M = 1000;
 
-    S = PulseSolution(order, vfParams, nfBranch, time);
+    S = PulseSolution(fourier, vfParams, normalForm, time);
     
     % get data for normal form solution
-    S = BKNormalForm4dim(S); 
+    S = S.BKNormalForm4d_halfline(); 
 
-    time = S.nfData.time;
-    sol = S.nfData.sol;
+    time = S.normalForm.time;
+    sol = S.normalForm.sol;
 
     figure 
     tiledlayout(4,1)
@@ -27,10 +28,10 @@ function test = testBKNormalForm4dim()
     title("Normal Form Solution")
     
     % trim time domain so normal form solution satisfies Neumann BC 
-    S = trimNFSol(S); 
+    S = trimNFSol_halfline(S); 
 
-    time = S.nfData.time;
-    sol = S.nfData.sol;
+    time = S.normalForm.time;
+    sol = S.normalForm.sol;
 
     figure 
     tiledlayout(4,1)

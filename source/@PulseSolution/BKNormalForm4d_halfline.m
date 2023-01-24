@@ -1,4 +1,4 @@
-function S = BKNormalForm4dim(S)
+function S = BKNormalForm4d_halfline(S)
 
 
     r = S.vfParams.mu; 
@@ -6,16 +6,20 @@ function S = BKNormalForm4dim(S)
     gam = 38*nu^2/9-3;
 
 
-    phi = S.nfBranch;
+    phi = S.normalForm.branch;
     
     
-    x=(-S.time:.01:S.time).';
+     M = S.fourier.M;
+     dt = 2*pi/M; 
+     t = dt*(1:M)';
+    full_x=S.time*(t-pi)/pi;
+    x = full_x(M/2:end);
    
     
         
     N=max(size(x));
     sol=zeros(N,4);
-    
+
  
     sol(:,1) = 2*sqrt(2.*r./gam).*sech(x.*sqrt(r)./2).*cos(x+phi);
     sol(:,2) = - (2.*sin(phi + x).*(2.*r/gam)^(1/2))./cosh((r^(1/2).*x)./2)...
@@ -31,6 +35,6 @@ function S = BKNormalForm4dim(S)
         - (3.*r.*sinh(r^(1/2).*x./2).^2.*sin(phi + x).*(2.*r./gam)^(1/2))./cosh(r^(1/2).*x./2).^3 ...
         - (3.*r^(3/2).*sinh(r^(1/2).*x./2).^3.*cos(phi + x).*(2.*r./gam)^(1/2))./(2.*cosh(r^(1/2).*x./2).^4);
 
-    S.nfData.time = x; 
-    S.nfData.sol = sol; 
+    S.normalForm.time = x; 
+    S.normalForm.sol = sol; 
 end

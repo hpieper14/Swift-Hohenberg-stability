@@ -1,0 +1,27 @@
+function [full_phi1, EuBasis] = generateEuFrame(C,L, params, orig_ic)
+    [vectors, values]= getBinfEigs(C);
+    v1=real(vectors.u(:,1));
+    v2 = imag(vectors.u(:,1));
+    
+    if (params.normalizeBasis == 1)
+        v1 = v1./vecnorm(v1);
+        v2 = v2./vecnorm(v2);
+    end
+    
+    vec_ic = [v1,v2];
+    
+    if (params.L == L) == 0
+        ic = [orig_ic; v1];
+        [full_phi1, basis_1] = integrateDE(ic,-params.L,-L,params);
+        new_ic1 = [full_phi1(end,2:5)'; vec_ic(:,1)];
+        new_ic2 = [full_phi1(end,2:5)'; vec_ic(:,2)];
+    else 
+        new_ic1 = [orig_ic; vec_ic(:,1)];
+        new_ic2 = [orig_ic; vec_ic(:,2)];
+    end
+
+    [full_phi1, basis_1] = integrateDE(new_ic1,-L,L,params);
+    [full_phi1, basis_2] = integrateDE(new_ic2,-L,L,params);
+    EuBasis = make_frame(basis_1, basis_2);
+   
+end    

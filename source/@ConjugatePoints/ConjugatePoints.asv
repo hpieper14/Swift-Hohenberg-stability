@@ -1,4 +1,4 @@
-classdef PulseSolution 
+classdef ConjugatePoints 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           Class properties.                             %
@@ -6,11 +6,9 @@ classdef PulseSolution
 
     properties( Access = public )
 
-        fourier = [];         % struct containing the fourier coefficients 
-                                % and associated parameters for Newtons method    
-        vfParams = [];         % Parameters for the vector field       
-        time = [];              % L for [-L,L] time interval to compute approximation on 
-        normalForm = [];        % struct containing normal form data and branch value
+        conjPts = [];         % struct containing data associated to the conjugate points  
+        vfParams = [];         % Parameters for the vector field
+        Euminus = []; 
     end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,11 +17,14 @@ classdef PulseSolution
     
     methods( Access = public, Static = false )
         
-        function S = PulseSolution(fourier, vfParams, normalForm, time)
+        function C = ConjugatePoints(conjPts, vfParams)
          
             % Store approximation order.
-            S.fourier = fourier;
-        
+            [vectors, values]= getBinfEigs(C);
+            isLagrangian = verifyLagrangian(C, frame);
+
+            [full_phi1, frame] = generateEuFrame(C);
+            
             % Store parameters for the vector field.
             S.vfParams = vfParams;
 
