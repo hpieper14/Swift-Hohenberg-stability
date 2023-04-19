@@ -9,6 +9,7 @@ classdef ConjugatePoints
         conjPts = [];         % struct containing data associated to the conjugate points  
         vfParams = [];         % Parameters for the vector field
         Euminus = []; 
+        Esplus = [];
     end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,6 +36,8 @@ classdef ConjugatePoints
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     methods( Access = public, Static = false )
+
+        [S, C] = mainConjPts(C, s)
         
         mat = Binf(C); 
         [vectors, values]= getBinfEigs(C);
@@ -50,9 +53,15 @@ classdef ConjugatePoints
         C = get4DimIC(C, S)
 
 
+
+
                                     
     end   
-    methods( Access = public, Static = true )
+    methods( Access = private, Static = false )
+
+        f1 = nonautonODE(C, T, Y)
+        f1 = nonautonODENormalized(C, T, Y)
+        f1 = stableBasisNonautonODE(C,T,Y, eval)
                 
         
                                     

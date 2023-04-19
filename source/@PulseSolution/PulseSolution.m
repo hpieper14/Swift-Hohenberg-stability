@@ -48,6 +48,8 @@ classdef PulseSolution
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     methods( Access = public, Static = false )
+
+        S = mainPulse(S)
         
         % Normal form solution via Burke and Knobloch 
         S = BKNormalForm4d_halfline(S)
@@ -62,6 +64,10 @@ classdef PulseSolution
 
         S = Newton_halfline(S); 
         S = Newton(S)
+
+        % get pulse derivative initial conditions in symplectic coordinates
+        % 
+        S = getPulseDerivIC(S, t_0)
 
         % helper methods, could be made private 
         % helper method to recover function from Fourier coefficients 

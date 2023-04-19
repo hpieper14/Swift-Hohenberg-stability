@@ -18,5 +18,4 @@ function f1 = nonautonODENormalized(C, T, Y)
 
 
     f1=[f1;f2;f3;f4;vec];
-
 end

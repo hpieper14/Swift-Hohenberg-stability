@@ -1,8 +1,10 @@
+function plots = get_all_plots(branch)
+
 vfParams.nu = 1.6;
 vfParams.mu = .05;
 vfParams.lambda = 0; 
 
-normalForm.branch = 0; 
+normalForm.branch = branch; 
 fourier.M = 1000; 
 fourier.tol = 1e-12; 
 fourier.order = 150; 
@@ -52,7 +54,7 @@ end
 
 S.fourier.unstable_eigs = vals;
 
-conjPts.L = 25; 
+conjPts.L = 60; 
 
 C = ConjugatePoints(conjPts, vfParams); 
 
@@ -60,6 +62,8 @@ C = C.get4DimIC(S);
 
 [vectors, values]= C.getBinfEigs();
 isLagrangian = C.verifyLagrangian(vectors.u); 
+
+C.Euminus.normalize = 1;
 
 C = C.generateEuFrame();
 
@@ -75,6 +79,20 @@ nexttile
 plot(time, basis1(3,:))
 nexttile
 plot(time, basis1(4,:))
+title('First normalized basis vector')
+
+basis2 = reshape(C.Euminus.frame(:, 2,:), [4, max(size(time))]);
+figure
+tiledlayout(4,1)
+nexttile
+plot(time, basis2(1,:))
+nexttile
+plot(time, basis2(2,:))
+nexttile
+plot(time, basis2(3,:))
+nexttile
+plot(time, basis2(4,:))
+title('Second normalized basis vector')
 
 
 
@@ -86,7 +104,56 @@ time = C.conjPts.dets{:,2};
 
 figure 
 plot(time, dets, LineWidth=1.25)
-title('Determinant $\det(A)$, $\phi = 0$', Interpreter='latex')
+title('Determinant normalized $\det(A)$, $\phi = \pi$', Interpreter='latex')
 xlabel('$x$', Interpreter = 'latex')
 
+%%%%%%%%%%%%%%%%%%%%%
 
+C.Euminus.normalize = 1;
+C.Esplus.normalize = 1; 
+
+C = C.generateEuFrame();
+
+time = C.Euminus.timeVec;
+basis1 = reshape(C.Euminus.frame(:, 1,:), [4, max(size(time))]);
+figure
+tiledlayout(4,1)
+nexttile
+plot(time, basis1(1,:))
+nexttile
+plot(time, basis1(2,:))
+nexttile
+plot(time, basis1(3,:))
+nexttile
+plot(time, basis1(4,:))
+title('First unnormalized basis vector')
+
+basis2 = reshape(C.Euminus.frame(:, 2,:), [4, max(size(time))]);
+figure
+tiledlayout(4,1)
+nexttile
+plot(time, basis2(1,:))
+nexttile
+plot(time, basis2(2,:))
+nexttile
+plot(time, basis2(3,:))
+nexttile
+plot(time, basis2(4,:))
+title('Second unnormalized basis vector')
+
+
+
+
+C = C.calculateDeterminant();
+
+dets = C.conjPts.dets{:, 3}; 
+time = C.conjPts.dets{:,2}; 
+
+figure 
+plot(time, dets, LineWidth=1.25)
+title('Determinant unnormalized $\det(A)$, $\phi = \pi$', Interpreter='latex')
+xlabel('$x$', Interpreter = 'latex')
+
+plots = C;
+
+end
