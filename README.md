@@ -10,7 +10,7 @@ Run either [main.mlx](results/main.mlx) or [main.m](results/main.m). Both files
 run the same code, but the live script [main.mlx](results/main.mlx) contains 
 some mathematical exposition. 
 
-[source]{source): Contains the source code that generates the results. This 
+[source](source): Contains the source code that generates the results. This 
 code is organized into 3 modules: 
 * [Fourier Series](source/@FourierSeries): contains code for a `FourierSeries` object 
 and operations.
