@@ -6,7 +6,7 @@ Swift-Hohenberg equation" by Margaret Beck, Jonathan Jaquette and Hannah Pieper.
 
 ## Subdirectories 
 [results](results): Contains the numerics presented in Section 5 of the paper. 
-Run either [main.mlx](results/main.mlx) or [main.m](results/main.m). Both files
+Run either [main.mlx](results/main.mlx) or [main.m](results/main_script.m). Both files
 run the same code, but the live script [main.mlx](results/main.mlx) contains 
 some mathematical exposition. 
 
