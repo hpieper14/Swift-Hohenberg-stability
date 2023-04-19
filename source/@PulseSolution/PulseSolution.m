@@ -69,16 +69,13 @@ classdef PulseSolution
         S = Newton(S)
 
         % get pulse derivative initial conditions in symplectic coordinates
-
         S = getPulseDerivIC(S, t_0)
-
-
-                                    
-    end   
-    methods( Access = private, Static = true )
+        
+        % helper methods
         solution = getFunctionFromFourierCoeffs(S, coeffs, time_vec)
         jacobian = DFFourier(S, a)
-        fourier_vf = fourierODE(S, a)                              
+        fourier_vf = fourierODE(S, a)    
+                                    
     end   
     
 end
