@@ -1,6 +1,9 @@
-% this function computes the fourier approximation of the pulse solution,
-% the initial conditions for U_\phi and the unstable eigenvalues of the
-% pulse solution
+% ADDME  Add two values together.
+%   C = ADDME(A) adds A to itself.
+%
+%   C = ADDME(A,B) adds A and B together.
+%
+%   See also SUM, PLUS.
 function S = mainPulse(S)
     S = S.BKNormalForm4d_halfline();
     S = S.trimNFSol_halfline();

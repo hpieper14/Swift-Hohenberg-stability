@@ -32,7 +32,7 @@ S = PulseSolution(fourier, vfParams, normalForm, time);
 S = S.mainPulse();
 
 
-% Plot the pulse solution obtained from normal form approximation and after
+% Plot normal form approximation and pulse approximation obtained by
 % performing Newton's method 
 
 time = S.normalForm.time; 
@@ -114,7 +114,7 @@ disp('Conjugate points locations (x): ')
 disp(conj_pts)
 
 
-disp("We found " + string(max(size(S.fourier.unstable_eigs))) + " eigenvalues and "...
+disp("We found " + string(max(size(S.fourier.unstable_eigs))) + " eigenvalue(s) and "...
     + string(max(size(conj_pts))) + " conjugate points for the pulse with phase " ...
     +'phi = ' + string(normalForm.branch))
 
