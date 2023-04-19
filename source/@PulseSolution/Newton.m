@@ -9,16 +9,11 @@ function S=Newton(S)
         fcn=S.fourierODE(s);
         DF=S.DFFourier(s);
         if vecnorm(fcn)< tol 
-            disp('tolerance met')
             break
         end
-        %s=s-(DF^(-1)*fcn')';
         s = s - (DF\(fcn'))';
         k=k+1;
     end
     S.fourier.full_coeff=s;
-%    disp('Approx zero:')
-%    disp(s)
-    disp('Error:')
-    disp(vecnorm(fcn))   
+
 end

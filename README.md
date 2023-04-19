@@ -21,6 +21,10 @@ using a Fourier series and Newton's method.
 object. This computes the conjugate points associated to the pulse solution. 
 
 
+## Software Requirements
+This code requires Matlab and the [Optimization Toolbox Add-On](https://www.mathworks.com/products/optimization.html). 
+If you try to run the main script or live script and you do not have the 
+Optimization Toolbox, the Matlab editor will prompt you to install it. 
 
 
 ## Copyright and License 

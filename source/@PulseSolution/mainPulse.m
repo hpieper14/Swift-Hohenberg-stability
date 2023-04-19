@@ -19,12 +19,8 @@ function S = mainPulse(S)
         vals = [vals, D(i,j)];
     else 
         A = D(i,j);
-        disp(A(:,1))
         vals = [vals, A(:, 1)];
     end
-
-    disp('Eigenvalues: ')
-    disp(vals)
     
     S.fourier.unstable_eigs = vals;
 end

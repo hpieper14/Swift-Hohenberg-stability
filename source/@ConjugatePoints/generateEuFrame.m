@@ -18,7 +18,6 @@ function C = generateEuFrame(C)
     vec_ic = [v1,v2];
 
     new_ic1 = [orig_ic; vec_ic(:,1)];
-    %new_ic2 = [orig_ic; vec_ic(:,2)];
     new_ic2 = [orig_ic; deriv_ic]; 
 
     [full_phi1, basis_1] = C.integrateDE(new_ic1,-L,L);
