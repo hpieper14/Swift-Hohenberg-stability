@@ -1,22 +1,22 @@
+% BKNORMALFORM4D_HALFLINE  Computes the solution to the first order system
+% from the normal form approximation to the pulse
+% 
+%   S = BKNormalForm4d_halfline(S)
+%   S = S.BKNormalForm4d_halfline()
+%
 function S = BKNormalForm4d_halfline(S)
-
-
     r = S.vfParams.mu; 
     nu = S.vfParams.nu;
     gam = 38*nu^2/9-3;
 
-
     phi = S.normalForm.branch;
-    
-    
-     M = S.fourier.M;
-     dt = 2*pi/M; 
-     t = dt*(1:M)';
+        
+    M = S.fourier.M;
+    dt = 2*pi/M; 
+    t = dt*(1:M)';
     full_x=S.time*(t-pi)/pi;
     x = full_x(M/2:end);
-   
     
-        
     N=max(size(x));
     sol=zeros(N,4);
 

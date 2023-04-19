@@ -3,8 +3,12 @@
 
 function [phisol, vsol] =integrateDE(C, ic,start,finish)  
     options=odeset('MaxStep',0.001, 'RelTol', 1e-10);
- 
-    [t,P]=ode45(@(t,P)C.nonautonODENormalized(t,P),[start finish],ic, options);
+
+    if C.Euminus.normalize == 1
+        [t,P]=ode45(@(t,P)C.nonautonODENormalized(t,P),[start finish],ic, options);
+    else
+        [t,P]=ode45(@(t,P)C.nonautonODE(t,P),[start finish],ic, options);
+    end
 
     
     phisol=[t,P(:,1:4)];

@@ -1,3 +1,4 @@
+% PULSESOLUTION  Class object for the pulse solution.
 classdef PulseSolution 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5,12 +6,15 @@ classdef PulseSolution
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     properties( Access = public )
-
-        fourier = [];         % struct containing the fourier coefficients 
-                                % and associated parameters for Newtons method    
-        vfParams = [];         % Parameters for the vector field       
-        time = [];              % L for [-L,L] time interval to compute approximation on 
-        normalForm = [];        % struct containing normal form data and branch value
+        
+        % struct containing the fourier coefficients and associated parameters for Newtons method    
+        fourier = [];         
+        % parameters for the vector field
+        vfParams = [];       
+        % L for [-L,L] time interval for approximation
+        time = [];         
+        % struct containing normal form data and branch value
+        normalForm = [];        
     end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,8 +40,7 @@ classdef PulseSolution
             
             % Store temporal domain, should be a positive number for domain
             % [-L, L] 
-            S.time = time;
-                                    
+            S.time = time;                     
             
         end
         
@@ -48,6 +51,9 @@ classdef PulseSolution
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     methods( Access = public, Static = false )
+        % main function to obtain pulse approximation and unstable
+        % eigenvalues associated to it
+        S = mainPulse(S)
         
         % Normal form solution via Burke and Knobloch 
         S = BKNormalForm4d_halfline(S)
@@ -55,27 +61,24 @@ classdef PulseSolution
         % Get normal form solution with Dirichlet/Neumann BC 
         S = trimNFSol_halfline(S);
 
-        % Get fourier coefficients from BK normal form solution 
+        % Get fourier coefficients from normal form solution 
         S = getFullFourierCoeffs(S, sol, interval_type)
 
         % Perform Newton's method 
-
         S = Newton_halfline(S); 
         S = Newton(S)
 
-        % helper methods, could be made private 
-        % helper method to recover function from Fourier coefficients 
-        solution = getFunctionFromFourierCoeffs(S, coeffs, time_vec)
-        jacobian = DFFourier(S, a)
-        fourier_vf = fourierODE(S, a)
+        % get pulse derivative initial conditions in symplectic coordinates
+
+        S = getPulseDerivIC(S, t_0)
 
 
                                     
     end   
-    methods( Access = public, Static = true )
-                
-        
-                                    
+    methods( Access = private, Static = true )
+        solution = getFunctionFromFourierCoeffs(S, coeffs, time_vec)
+        jacobian = DFFourier(S, a)
+        fourier_vf = fourierODE(S, a)                              
     end   
     
 end

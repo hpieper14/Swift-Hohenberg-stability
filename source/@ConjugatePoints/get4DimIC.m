@@ -28,6 +28,5 @@ function C = get4DimIC(C, S)
         index = index(1);
     end
 
-
     C.Euminus.pulse_ic = solution_vec(index, :);
 end
