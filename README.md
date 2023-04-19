@@ -10,7 +10,7 @@ Run either [main.mlx](results/main.mlx) or [main.m](results/main_script.m). Both
 run the same code, but the live script [main.mlx](results/main.mlx) contains 
 some mathematical exposition. 
 
-[source]{source): Contains the source code that generates the results. This 
+[source](source): Contains the source code that generates the results. This 
 code is organized into 3 modules: 
 * [Fourier Series](source/@FourierSeries): contains code for a `FourierSeries` object 
 and operations.
@@ -19,6 +19,8 @@ object. This approximates the pulse solution to the Swift-Hohenberg equation
 using a Fourier series and Newton's method. 
 * [Conjugate Points](source/@ConjugatePoints): contains code for a `ConjugatePoints` 
 object. This computes the conjugate points associated to the pulse solution. 
+
+[test](test): contains some unit tests to check the code. 
 
 
 ## Software Requirements
