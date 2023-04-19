@@ -1,3 +1,9 @@
+% GETPULSEDERIVIC  computes the initial conditions to the solution of the
+% first order system constructed from the derivative of the pulse at time
+% t_0. 
+%   S = S.getPulseDerivIC(t_0)
+%   S = getPulseDerivIC(S, t_0) 
+% 
 function S = getPulseDerivIC(S, t_0)
     L = S.time; 
     if t_0 > L 

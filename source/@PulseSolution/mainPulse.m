@@ -1,21 +1,24 @@
-% ADDME  Add two values together.
-%   C = ADDME(A) adds A to itself.
-%
-%   C = ADDME(A,B) adds A and B together.
-%
-%   See also SUM, PLUS.
+% MAINPULSE  Computes Fourier approximation of pulse solution and
+% approximates the unstable eigenvalues associated to the pulse solution.
+%   S = S.mainPulse()
+%   S = mainPulse(S) 
+% 
 function S = mainPulse(S)
+    % get pulse approximation from normal form. Determines where to
+    % truncate spatial domain so $\varphi'(L) \approx 0$. 
     S = S.BKNormalForm4d_halfline();
-    S = S.trimNFSol_halfline();
+    S = S.trimNFSol_halfline(); 
     S = BKNormalForm4d_halfline(S); 
     
-    
+    % refine Fourier coefficients with Newton's method
     S = S.Newton_halfline(); 
     S = S.Newton();
+
+    % get Jacobian 
+    DF = S.DFFourier(S.fourier.full_coeffs);
     
-    DF=S.DFFourier(S.fourier.full_coeffs);
-    
-    D=eig(DF);
+    % compute eigenvalues of Jacobian and save positive eigenvalues
+    D = eig(DF);
     [i,j] = find(D>1e-12);
     vals = [];
     if min(size(D(i,j))) == 1

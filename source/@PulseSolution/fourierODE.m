@@ -1,3 +1,9 @@
+% FOURIERODE  computes Fourier transform of the first order system
+% evaluated at a, where a is the vector of Fourier coefficients
+%   fcn = fourierODE(S, a) 
+%   fcn = S.fourierODE(a)  
+% 
+% returns a vector
 function fcn = fourierODE(S, a) 
     order = S.fourier.order; 
     params = S.vfParams;

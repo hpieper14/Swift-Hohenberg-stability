@@ -1,5 +1,10 @@
-% returns a vector of coeffs (a_{-k},..., a_{-1}, a_0, a_1, .... a_k)
-% order = n
+% GETFULLFOURIERCOEFFS  Computes Fourier coefficient for a vector of
+% function values $u$ 
+%   coeffs = getFullFourierCoeffs(S, u, time_vec)
+%   coeffs = S.getFullFourierCoeffs(u, time_vec) 
+% 
+% returns a vector of Fourier coefficients 
+% (a_{-k},..., a_{-1}, a_0, a_1, .... a_k)
 function coeffs = getFullFourierCoeffs(S, u, time_vec)
     order = S.fourier.order;
     L = (time_vec(end) - time_vec(1))/2;
