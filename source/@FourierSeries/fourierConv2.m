@@ -1,8 +1,6 @@
-% Written by Hannah Pieper. Last modified 11/14/21
-
-% This file performs the Cauchy product for two vectors a,b of the same
-% order. The vectors a,b can have entries that are scalars or intervals.
-
+% FOURIERCONV2  Computes the Cauchy product for two vectors a, b. 
+%   vec = fourierConv2(a, b, order, side)
+%
 % Inputs: 
 %   side - 0, 1. Pass in 1 if the vectors a,b are one-sided meaning we have
 %       assumed a_{-k} = a_{k} and we choose to work with a=(a_0,..., a_n). Pass in
@@ -17,10 +15,6 @@
 %   the inputs are two sided, then the output
 %   is a row vector of size 4*order+1 containing the convolution terms of
 %   \tilde a = [zeros(1,order), a, zeros(1,order)]. 
-%
-%   This is done because the lower order terms of the sequence a and b affect
-%   higher order terms in the derivative of the convolution, so the extra 
-%   terms may be useful in subsequent computations. 
 function vec = fourierConv2(a, b, order, side)
     if size(a,2) == 1
         a = a';

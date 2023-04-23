@@ -1,5 +1,7 @@
-classdef ConjugatePoints 
+% CONJUGATEPOINTS ConjugatePoints Class. Used to compute the conjugate
+% points associated to PulseSolution object S 
 
+classdef ConjugatePoints 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           Class properties.                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

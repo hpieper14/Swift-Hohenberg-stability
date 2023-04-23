@@ -1,3 +1,7 @@
+% VERIFYLAGRANGIAN Verifies that a given frame matrix is Lagrangian.
+%
+%   isLagrangian = verifyLagrangian(C, frame) 
+%   isLagrangian = C.verifyLagrangian(frame) 
 function isLagrangian = verifyLagrangian(C, frame) 
     if (size(frame, 1) == 2*size(frame, 2)) == 0
         disp('This frame may not be of size 2n x n') 
