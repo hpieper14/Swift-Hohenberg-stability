@@ -1,4 +1,8 @@
-% this function computes the conjugate points for pulse solution S 
+% MAINCONJPOINTS  Computes the conjugate points for a pulse solution S and
+% saves the relevant information to the ConjugatePoints object C
+%
+%   [S, C] = mainConjPts(C, S) 
+%   [S, C] = C.mainConjPts(S) 
 function [S, C] = mainConjPts(C, S) 
     L = C.conjPts.L; 
     S = S.getPulseDerivIC(L); 
@@ -7,10 +11,8 @@ function [S, C] = mainConjPts(C, S)
     ic = S.fourier.pulseDeriv.coords;
     C.Euminus.pulse_deriv_ic = ic/vecnorm(ic);
     
-    
     [vectors, values]= C.getBinfEigs();
         
     C = C.generateEuFrame();
-    C = C.calculateDeterminant();
-
+    C = C.calculateDeterminant()
 end

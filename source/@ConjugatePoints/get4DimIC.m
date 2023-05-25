@@ -1,10 +1,16 @@
+% GET4DIMIC  Computes the initial condition of the solution to the 4
+% dimensional first order system corresponding to the pulse solution from
+% its Fourier coefficients and saves the initial conditions to the
+% ConjugatePoints object C
+%
+%   C = get4DimIC(C, S)
+%   C = C.get4DimIC(S)
 function C = get4DimIC(C, S)
     old_L = S.time;
     new_L = C.conjPts.L;
 
     fourierCoeffs = S.fourier.full_coeff; 
-    order = S.fourier.order; 
-
+    order = S.fourier.order;
     derivative_coeffs = zeros(3, max(size(fourierCoeffs)));
 
     for k = -order:order

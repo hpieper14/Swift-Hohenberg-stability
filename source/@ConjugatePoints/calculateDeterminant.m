@@ -1,3 +1,9 @@
+% CALCULATEDETERMINANT  Calculates the determinant of the middle 2x2
+% submatrix of the frame matrix. Zeros of this determinant object
+% correspond to conjugate points.
+%
+%   C = calculateDeterminant(C)
+%   C = C.calculateDeterminant()
 function C = calculateDeterminant(C)
         all_bases = C.Euminus.frame; 
         lambda = C.vfParams.lambda; 
