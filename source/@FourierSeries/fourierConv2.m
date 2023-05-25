@@ -37,16 +37,10 @@ function vec = fourierConv2(a, b, order, side)
         a = [a, zeros(1, order)];
         b = [b, zeros(1, order)];
        end
-       disp("order")
-       disp(order)
         for k=0:order
             dubsum=0;
             for i=-order:order
                 l=k-i;
-                disp("i")
-                disp(i)
-                disp("l")
-                disp(l)
                 dubsum=dubsum+a(abs(i)+1)*b(abs(l)+1);
             end
             vec=[vec,dubsum];
