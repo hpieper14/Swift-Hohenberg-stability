@@ -16,5 +16,6 @@ function S=Newton(S)
         s = s - (DF\(fcn'))';
         k=k+1;
     end
+    S.fourier.full_coeffs=s;
     S.fourier.full_coeff=s;
 end

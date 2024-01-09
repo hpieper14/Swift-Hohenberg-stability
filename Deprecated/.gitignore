@@ -1,0 +1,16 @@
+# MATLAB Autosave #
+###################
+*.asv
+
+# Stable basis vecs 
+source/@ConjugatePoints/integrateStableBasisVecs.m
+source/@ConjugatePoints/stableBasisNonautonODE.m
+source/@ConjugatePoints/stableBasisNonautonODENormalized.m
+
+
+# plots and extra
+results/get_all_plots.m
+results/basis_vec_coefficients.mlx
+results/det_limit.mlx
+
+

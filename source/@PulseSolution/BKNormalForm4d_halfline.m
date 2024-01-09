@@ -37,4 +37,5 @@ function S = BKNormalForm4d_halfline(S)
 
     S.normalForm.time = x; 
     S.normalForm.sol = sol; 
+    sol=sol;
 end
