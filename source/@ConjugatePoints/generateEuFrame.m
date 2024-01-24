@@ -24,6 +24,23 @@ function C = generateEuFrame(C)
 
     [full_phi1, basis_1] = C.integrateDE(new_ic1,-L,L);
     [full_phi1, basis_2] = C.integrateDE(new_ic2,-L,L);
+
+    time = full_phi1(:, 1);
+    figure 
+    tiledlayout(4,1)
+    nexttile 
+    plot(time, full_phi1(:, 2))
+    nexttile 
+    plot(time, full_phi1(:, 3))
+    nexttile 
+    plot(time, full_phi1(:, 4))
+    nexttile 
+    plot(time, full_phi1(:, 4))
+    title("Pulse solution found by integrating the (non)autonomous system")
+
+
+
+    
     
     [C.Euminus.frame, C.Euminus.timeVec] = C.makeFrame(basis_1, basis_2);
    
