@@ -13,30 +13,30 @@ function S = mainPulse(S)
     % refine Fourier coefficients with Newton's method
     S = S.Newton_halfline(); 
     
-    % Redefine the Fourier Coefficients
-    if S.vfParams.mu == .2
-        load('StableCoeff.mat','StableCoeff')
-        % StableCoeff
-        N_fourier = 2*S.fourier.order+1; 
-        N_stored = length(StableCoeff);
-        if N_fourier  == N_stored 
-            % Everything is good
-        elseif N_fourier  > N_stored 
-            % Pad Stored with zeros
-            n_padding = (N_fourier -N_stored )/2;
-            StableCoeff = [zeros(1,n_padding)  , StableCoeff , zeros(1,n_padding)];
-        elseif N_fourier  < N_stored 
-            % Cut Stored down to size
-            n_padding = (N_stored -N_fourier  )/2;
-            StableCoeff =StableCoeff (1+n_padding:end-n_padding);
-        end
-        S.fourier.full_coeffs = StableCoeff;
-    end
+    % % Redefine the Fourier Coefficients
+    % if S.vfParams.mu == .2
+    %     load('StableCoeff.mat','StableCoeff')
+    %     % StableCoeff
+    %     N_fourier = 2*S.fourier.order+1; 
+    %     N_stored = length(StableCoeff);
+    %     if N_fourier  == N_stored 
+    %         % Everything is good
+    %     elseif N_fourier  > N_stored 
+    %         % Pad Stored with zeros
+    %         n_padding = (N_fourier -N_stored )/2;
+    %         StableCoeff = [zeros(1,n_padding)  , StableCoeff , zeros(1,n_padding)];
+    %     elseif N_fourier  < N_stored 
+    %         % Cut Stored down to size
+    %         n_padding = (N_stored -N_fourier  )/2;
+    %         StableCoeff =StableCoeff (1+n_padding:end-n_padding);
+    %     end
+    %     S.fourier.full_coeff_from_half_newton = StableCoeff;
+    % end
 
     S = S.Newton();
 
     % get Jacobian 
-    DF = S.DFFourier(S.fourier.full_coeffs);
+    DF = S.DFFourier(S.fourier.full_coeff_from_half_newton);
     
     % compute eigenvalues of Jacobian and save positive eigenvalues
     D = eig(DF);
