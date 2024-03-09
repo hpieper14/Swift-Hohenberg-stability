@@ -1,8 +1,8 @@
 # Swift-Hohenberg-stability
-This code is written by Hannah Pieper and accompanies the paper "The Maslov 
+This code is written by Hannah Pieper and accompanies the paper [The Maslov 
 Index, degenerate crossings, and the stability of pulse solutions to the 
-Swift-Hohenberg equation" by Margaret Beck, Jonathan Jaquette and Hannah Pieper. 
-** ADD LINK TO PAPER WHEN UP ** 
+Swift-Hohenberg equation](https://arxiv.org/abs/2403.04003) by Margaret Beck, Jonathan Jaquette and Hannah Pieper. 
+
 
 ## Subdirectories 
 [results](results): Contains the numerics presented in Section 5 of the paper. 
