@@ -13,7 +13,7 @@ function S = getPulseDerivIC(S, t_0)
     order = S.fourier.order;
     
     chainRuleTerms = -1i*pi*[-order:order]/L;
-    ak = S.fourier.full_coeff; 
+    ak = S.fourier.full_coeff_from_half_newton; 
     expTerms = ak.*exp(-1i*pi*[-order:order]*t_0/L);
     
 

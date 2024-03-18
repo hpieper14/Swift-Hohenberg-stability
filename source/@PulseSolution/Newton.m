@@ -4,7 +4,7 @@
 %   S = Newton(S) 
 % 
 function S=Newton(S)
-    s = S.fourier.full_coeffs;     
+    s = S.fourier.full_coeff_from_half_newton;     
     k=0;
     while k < 100
         fcn=S.fourierODE(s);

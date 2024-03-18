@@ -9,7 +9,8 @@ function C = get4DimIC(C, S)
     old_L = S.time;
     new_L = C.conjPts.L;
 
-    fourierCoeffs = S.fourier.full_coeff; 
+   % fourierCoeffs = S.fourier.full_coeff; 
+    fourierCoeffs = S.fourier.full_coeff_from_half_newton; 
     order = S.fourier.order;
     derivative_coeffs = zeros(3, max(size(fourierCoeffs)));
 

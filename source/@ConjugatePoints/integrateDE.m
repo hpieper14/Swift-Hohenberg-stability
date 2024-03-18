@@ -6,7 +6,7 @@
 %   [phisol, vsol] = C.integrateDE(ic,start,finish)  
 function [phisol, vsol] =integrateDE(C, ic,start,finish)  
     % options for ODE45
-    options=odeset('MaxStep',0.001, 'RelTol', 1e-10);
+    options=odeset('MaxStep',0.001, 'RelTol', 1e-13);
 
     if C.Euminus.normalize == 1
         [t,P]=ode45(@(t,P)C.nonautonODENormalized(t,P),[start finish],ic, options);

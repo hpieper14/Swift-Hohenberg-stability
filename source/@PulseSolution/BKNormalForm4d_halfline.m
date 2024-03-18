@@ -36,5 +36,10 @@ function S = BKNormalForm4d_halfline(S)
         - (3.*r^(3/2).*sinh(r^(1/2).*x./2).^3.*cos(phi + x).*(2.*r./gam)^(1/2))./(2.*cosh(r^(1/2).*x./2).^4);
 
     S.normalForm.time = x; 
-    S.normalForm.sol = sol; 
+    if S.vfParams.mu == .2
+        S.normalForm.sol = 3*sol; 
+    else 
+        S.normalForm.sol = sol; 
+    end
+    
 end
