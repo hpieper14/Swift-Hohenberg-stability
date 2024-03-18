@@ -7,7 +7,10 @@ function S = Newton_halfline(S)
     % Option to display output and use Jacobian
     options=optimset('Display','iter','Jacobian','on','MaxIter',10000);     
     
-    u = 3*S.normalForm.sol(:,1); 
+    % Sometimes need to tweak the scaling of the normal form solution for
+    % convergence to a pulse 
+
+    u = S.normalForm.sol(:,1); 
     [uout,fval] = fsolve(@(u) S.fourierODE_halfline(u),u,options);  
     coeffs = S.getFullFourierCoeffs(uout, S.normalForm.time);
     S.fourier.half_coeffs = coeffs; 

@@ -14,5 +14,5 @@ function [S, C] = mainConjPts(C, S)
     [vectors, values]= C.getBinfEigs();
         
     C = C.generateEuFrame();
-    C = C.calculateDeterminant()
+    C = C.calculateDeterminant();
 end
