@@ -6,9 +6,7 @@ Swift-Hohenberg equation](https://arxiv.org/abs/2403.04003) by Margaret Beck, Jo
 
 ## Subdirectories 
 [results](results): Contains the numerics presented in Section 5 of the paper. 
-Run either [main.mlx](results/main.mlx) or [main.m](results/main_script.m). Both files
-run the same code, but the live script [main.mlx](results/main.mlx) contains 
-some mathematical exposition. 
+Run [main.m](results/main_script.m). 
 
 [source](source): Contains the source code that generates the results. This 
 code is organized into 3 modules: 
