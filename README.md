@@ -29,7 +29,7 @@ Optimization Toolbox, the Matlab editor will prompt you to install it.
 
 ## Copyright and License 
 
-Copyright (C) 2023  M Beck, J Jaquette, and H Pieper.
+Copyright (C) 2024  M Beck, J Jaquette, and H Pieper.
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
