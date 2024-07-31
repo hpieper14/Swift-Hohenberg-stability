@@ -156,6 +156,21 @@ end
 disp("We found " + string(max(size(S.fourier.unstable_eigs))) + " eigenvalue(s) and "...
     + string(length(conj_pts)) + " conjugate points for the pulse with phase " ...
     +'phi = ' + string(normalForm.branch))
+
+BOOL_simple_crossings = 1;
+for i = 1:length(conj_pts)
+    index = conj_ind(i); % Iterate through conjugate point indices 
+    frame_at_crossing = C.Euminus.frame(:,:,index);    
+    intersection_with_sandwhich = [1 0 0 0;0 0 0 1]*frame_at_crossing;
+    if norm(intersection_with_sandwhich,1) < 1e-3
+        BOOL_simple_crossings =0;
+    end
+end
+if BOOL_simple_crossings 
+    disp("All crossings are simple")
+else
+    disp("At least one of the crossings appears to be non-simple")
+end
 disp(' ')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
