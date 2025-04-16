@@ -224,6 +224,10 @@ coord_14 = plucker_trajectory(plot_time,3);
 [x,y] = meshgrid(-1:0.1:1); 
 z = zeros(size(x, 1));
 
+% Plots proj of Sandwich Plane, restricted to where it has norm-1 .
+[X,Y,Z] = ellipsoid(1/2,0,0,1/2,1/2,0,255);
+[X2,Y2,Z2] = ellipsoid(-1/2,0,0,1/2,1/2,0,255);
+
 if vfParams.mu == .2
     trajectory_color = .7*[0 0.4470 0.7410];
 elseif normalForm.branch == pi 
@@ -238,7 +242,9 @@ figure
 grid on
 hold  on 
 plot3(coord_12,coord_13,coord_14, LineWidth=1.5, color = trajectory_color);
-surf(x, y, z, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
+% surf(x, y, z, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
+surf(X, Y, Z, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
+surf(X2, Y2, Z2, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
 xlabel('$P_{12}$', Interpreter = 'latex', FontSize=14)
 ylabel('$P_{13}$', Interpreter = 'latex', FontSize=14)
 zlabel('$P_{14}$', Interpreter = 'latex', FontSize=14) 
