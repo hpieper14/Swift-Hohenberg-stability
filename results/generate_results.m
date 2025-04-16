@@ -43,17 +43,17 @@ S = S.mainPulse();
 time = S.normalForm.time; 
 sol = S.normalForm.sol(:,1);
 full_sol = S.getFunctionFromFourierCoeffs(S.fourier.full_coeff_from_half_newton, "full");
-if S.vfParams.mu == .2 
-    sol = 1/3.*sol; 
-    full_sol(:,2) = 1/3.*full_sol(:, 2);
-end
 
 figure 
 hold on 
 plot(full_sol(:, 1), full_sol(:, 2), color = 'b', LineWidth=1.25)
 plot([-flip(time), time], [flip(sol), sol], Color  = 'r', LineWidth=1.25)
 %legend('Solution after Newtons method, $\bar \varphi^{(N)}$', 'Solution via Normal Form Eqn, $u_\phi$', Interpreter = 'latex')
-legend('$\bar \varphi^{(N)}$', '$u_\phi$', Interpreter = 'latex', fontsize = 15)
+if S.vfParams.mu ~= .2 
+    legend('$\bar \varphi^{(N)}$', '$u_\phi$', Interpreter = 'latex', fontsize = 15)
+else
+    legend('$\bar \varphi^{(N)}$', '$3u_\phi$', Interpreter = 'latex', fontsize = 15)
+end
 title('Pulse Approximations, $\phi =$ ' + string(normalForm.branch) + ...
     ", $\mu =$ " + num2str(vfParams.mu) + ", $\nu =$ " + ...
     num2str(vfParams.nu), Interpreter = 'latex')
@@ -201,9 +201,7 @@ end
 time = S.normalForm.time; 
 full_sol = S.getFunctionFromFourierCoeffs( ...
     S.fourier.full_coeff_from_half_newton, "full");
-if S.vfParams.mu == .2 
-    full_sol(:,2) = 1/3*full_sol(:,2);
-end
+
 figure 
 plot(full_sol(:, 1), full_sol(:, 2), color = c, LineWidth=1.25)
 xlabel('$x$', Interpreter = 'latex', fontsize = 14)
