@@ -243,9 +243,8 @@ set(gcf, 'Renderer', 'Painters');
 grid on
 hold  on 
 plot3(coord_12,coord_13,coord_14, LineWidth=1.5, color = trajectory_color);
-% surf(x, y, z, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
-surf(X, Y, Z, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
-surf(X2, Y2, Z2, FaceAlpha = 0.15, EdgeColor="none", FaceColor = "#7E2F8E");
+surf(X, Y, Z, FaceAlpha = 0.75, EdgeColor="none", FaceColor = "#d7b8de");
+surf(X2, Y2, Z2, FaceAlpha = 0.75, EdgeColor="none", FaceColor = "#d7b8de");
 xlabel('$P_{12}$', Interpreter = 'latex', FontSize=14)
 ylabel('$P_{13}$', Interpreter = 'latex', FontSize=14)
 zlabel('$P_{14}$', Interpreter = 'latex', FontSize=14) 
