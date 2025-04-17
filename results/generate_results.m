@@ -225,8 +225,8 @@ coord_14 = plucker_trajectory(plot_time,3);
 z = zeros(size(x, 1));
 
 % Plots proj of Sandwich Plane, restricted to where it has norm-1 .
-[X,Y,Z] = ellipsoid(1/2,0,0,1/2,1/2,0,255);
-[X2,Y2,Z2] = ellipsoid(-1/2,0,0,1/2,1/2,0,255);
+[X,Y,Z] = ellipsoid(1/2,0,0,1/2,1/2,0,64);
+[X2,Y2,Z2] = ellipsoid(-1/2,0,0,1/2,1/2,0,64);
 
 if vfParams.mu == .2
     trajectory_color = .7*[0 0.4470 0.7410];
@@ -239,6 +239,7 @@ end
 % Plot of trajectory and sandwich plane train in Plucker coordinates
 set(gcf, 'Renderer', 'Painters');
 figure
+set(gcf, 'Renderer', 'Painters');
 grid on
 hold  on 
 plot3(coord_12,coord_13,coord_14, LineWidth=1.5, color = trajectory_color);
